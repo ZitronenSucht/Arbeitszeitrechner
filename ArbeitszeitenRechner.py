@@ -60,13 +60,11 @@ def on_closing():
         root.destroy()
         sys.exit()
 
-# Hauptfenster erstellen
 root = tk.Tk()
 root.title("Arbeitszeitrechner")
 root.geometry("400x300")
 root.configure(bg="#f0f0f0")  # Light gray background
 
-# Stil für ttk-Widgets definieren
 style = ttk.Style()
 style.theme_use('clam')
 style.configure("TFrame", background="#f0f0f0")
@@ -75,39 +73,28 @@ style.configure("TButton", background="#4CAF50", foreground="white")
 style.map("TButton", background=[('active', '#45a049')])
 style.configure("TEntry", fieldbackground="white", foreground="#333333")
 
-# Hauptframe erstellen
 main_frame = ttk.Frame(root, padding="20", style="TFrame")
 main_frame.pack(fill=tk.BOTH, expand=True)
 
-# Titel-Label erstellen und platzieren
 title_label = ttk.Label(main_frame, text="Ankunftszeit (HH:MM):", font=('Roboto', 14, 'bold'), style="TLabel")
 title_label.pack(pady=(0, 10))
 
-# Eingabefeld erstellen und platzieren
 eingabe = ttk.Entry(main_frame, font=('Roboto', 12), width=10, justify='center', style="TEntry")
 eingabe.pack()
 
-# Berechnen-Button erstellen und platzieren
 berechnen_button = ttk.Button(main_frame, text="Berechnen", command=arbeitszeit_berechnen, style="TButton")
 berechnen_button.pack(pady=15)
 
-# Zurück-Button erstellen (zunächst nicht sichtbar)
 zuruck_button = ttk.Button(main_frame, text="Zurück zur Eingabe", command=zuruck_zur_eingabe, style="TButton")
 
-# Ergebnis-Label erstellen und platzieren
 ergebnis_label = ttk.Label(main_frame, text="", wraplength=350, justify="center", font=('Roboto', 11), style="TLabel")
 ergebnis_label.pack(pady=10)
 
-# "Von Luca :3" Label erstellen und platzieren
 luca_label = ttk.Label(root, text="Von Luca :3", font=('Roboto', 8), style="TLabel")
 luca_label.pack(side=tk.BOTTOM, anchor=tk.SW, padx=5, pady=5)
 
-# Bind Enter key to arbeitszeit_berechnen function
 root.bind('<Return>', lambda event: arbeitszeit_berechnen())
 
-
-# Set the closing protocol
 root.protocol("WM_DELETE_WINDOW", on_closing)
 
-# GUI-Ereignisschleife starten
 root.mainloop()
